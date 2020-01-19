@@ -1,0 +1,61 @@
+<div class="row" id="steps_form">  
+  <%= form_with model: @event, id: "event_form", html: { multipart: true } do |form| %>
+    <% if event.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+        <ul>
+        <% event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="step-1">
+      <div class="form-group">
+        <%= form.text_field :title, class: "form-control required", placeholder: "Event name" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.text_area :description, class: "form-control required", placeholder: "Event description" %>
+      </div>
+      <div class="form-group">
+        <%= form.file_field :event_poster, class: "form-control required", placeholder: "Event name" %>
+      </div>
+
+      <div class="form-group", id="datetimepicker">
+        <%= form.text_field :start_date, class: "form-control required" %>
+      </div>
+    <div class="step-2">
+
+      <div class="form-group">
+        <%= form.text_area :location, class: "form-control required", placeholder: "Event location" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :contact_numbers %>
+        <%= form.text_field :contact_numbers, class: "form-control", placeholder: "Contact number ex: 77777777, 7777900009" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.select :payment, Event.payments, class: "form-control" %>
+      </div>
+      <div class="form-group", id="datetimepicker">
+        <%= form.text_field :end_date, class: "form-control", placeholder: "End date" %>
+      </div>
+      <div class="form-group">
+        <%= form.text_field :total_seats, class: "form-control", placeholder: "Total seats" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.number_field :payment_amount_based_on_enum, class: "form-control", placeholder: "Ticket Price" %>
+      </div>
+    </div>
+    <div class="step-3">
+      <div class="form-group">
+        <%= form.submit "Submit", class: "btn btn-default"  %>
+      </div>
+    </div>
+    
+  <% end %>
+</div>

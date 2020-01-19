@@ -1,0 +1,13 @@
+a#create_event_btn{
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 5px 8px;
+}
+
+a#create_event_btn:hover{
+	background: #3e7ff0;
+	color: #fff;
+	transition: 0.4s;
+	border: 1px solid #3e7ff0;
+	text-decoration: none !important;
+}

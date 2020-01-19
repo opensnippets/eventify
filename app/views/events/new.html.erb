@@ -1,0 +1,36 @@
+<section>
+	<div class="container">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="row">
+				<h3>New Event</h3>
+			</div>
+			<div class="row"> 
+				<hr>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="row">
+						<p>
+							The least productive people are usually the ones <br />who are most in favor of holding meetings.<br><br><strong>Thomas Sowell</strong>
+						</p>
+					</div><br><br>
+					<div class="row">
+						<p>
+							If you had to identify, in one word, the reason<br> why the human race has not achieved,<br> and never will achieve, its full potential, that word would be 'meetings.'<br><br><strong>Dave Barry</strong>
+						</p>
+					</div><br>
+				</div>
+				<div class="col-md-6">
+					<%= render 'form', event: @event %>
+				</div>
+			</div>
+			
+
+				
+
+				<%= link_to 'Back', events_path %>
+		</div>
+	</div>
+</section>
+

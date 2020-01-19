@@ -1,0 +1,30 @@
+<section class="added-books">
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="row">
+        <div class="col-md-8">
+          <img src="https://images.pexels.com/photos/3473569/pexels-photo-3473569.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=940" class="img-responsive" id="event_show_images">
+        </div>
+        <div class="col-md-4">
+          <h4><%= @event.title %></h4>
+          <br>
+          <p>Event date: <%= dateformat(@event.start_date) %></p>
+          <p>End date: <%= @event.end_date %></p>
+          <br>
+          <p>20 - <%= @event.total_seats %></p>
+          <br>
+          <p>Price: <%= @event.payment_amount_based_on_enum %></p>
+          <br>
+          <p><a href="" class="btn btn-primary">Register now</a></p>
+        </div>
+      </div>
+      <div style="background: #f1f1f1; padding: 20px; margin: 50px 0px;">  
+        <dir class="row">
+          <p>
+            <%= @event.description %>
+          </p>
+        </div>
+      </dir>
+    </div>
+  </div>
+</section>

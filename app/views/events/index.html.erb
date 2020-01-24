@@ -1,1 +1,74 @@
-<%= react_component 'Events' %>
+
+<section class="added-books">
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="alert alert-info" role="alert">
+        <i class="fa fa-heart-o"></i> &emsp;List of interested and created events
+      </div>
+      <div class="books">
+        <div class="headers-table">
+          <div class="pull-left">
+            
+          </div>
+          
+          <a href="/events/new" class="pull-right" id="create_event_btn"><i class="fa fa-plus"></i>&emsp;Create event</a>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Event name</th>
+              <th>Total subscriptions</th>
+              <th>Price</th>
+              <th>Event date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @events.each do |e| %>
+              <tr>
+                <td><%= link_to e.title, event_path(e) %></td>
+                <td>Doe</td>
+                <td>john@example.com</td>
+                <td><%= e.start_date %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="row">
+        <div class="col-md-12">
+          <h4>Registered events</h4>
+          <br>
+        </div>
+      </div>
+      <div class="books">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Event name</th>
+              <th>price</th>
+              <th>Price</th>
+              <th>Event date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @registered_events.each do |e| %>
+              <tr>
+                <td><%= link_to e.event.title, event_path(e.event) %></td>
+                <td><%= 0 %></td>
+                <td>john@example.com</td>
+                <td><%= e.event.start_date %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

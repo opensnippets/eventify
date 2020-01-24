@@ -11,11 +11,18 @@
           <p>Event date: <%= dateformat(@event.start_date) %></p>
           <p>End date: <%= @event.end_date %></p>
           <br>
-          <p>20 - <%= @event.total_seats %></p>
+          <p><%= total_registered_seats(@event) %> - <%= @event.total_seats %></p>
           <br>
           <p>Price: <%= @event.payment_amount_based_on_enum %></p>
           <br>
-          <p><a href="" class="btn btn-primary">Register now</a></p>
+          <p>
+            <% if find_user_registered_for_this_event(@event).present? %>
+              <%= link_to "Registered", "" ,class: "btn btn-primary disabled" %> 
+            <% else %>
+              <%= link_to "Register now", event_event_registrations_path(event_id: @event.id), method: :post,class: "btn btn-primary" %> 
+
+            <% end %>
+          </p>
         </div>
       </div>
       <div style="background: #f1f1f1; padding: 20px; margin: 50px 0px;">  

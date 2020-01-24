@@ -18,7 +18,4 @@
 //= require moment.js
 //= require datepicker/bootstrap-datetimepicker.js
 //= require validate/jquery.validate.min.js
-//= require react
-//= require react_ujs
-//= require components
 //= require_tree .

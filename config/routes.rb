@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :events
+  
+  resources :events do
+    resources :event_registrations, only: [:create, :destroy]
+  end
   get 'dashboard/index'
   devise_for :users
   root 'static_pages#home'
@@ -8,7 +11,10 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
 
   scope module: 'admins', as: 'admins', path: '/admins' do
-	get 'dashboard', to: 'dashboard#index', as: 'root'
+	 get 'dashboard', to: 'dashboard#index', as: 'root'
   end
+
+  
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

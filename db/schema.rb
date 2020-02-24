@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_24_051838) do
+ActiveRecord::Schema.define(version: 2020_02_24_181603) do
+
+  create_table "albums", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "venue_id"
+    t.string "album_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["venue_id"], name: "index_albums_on_venue_id"
+  end
+
+  create_table "event_facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "facility_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_facilities_on_event_id"
+    t.index ["facility_id"], name: "index_event_facilities_on_facility_id"
+  end
 
   create_table "event_registrations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "event_id"
@@ -37,6 +54,32 @@ ActiveRecord::Schema.define(version: 2020_01_24_051838) do
     t.string "event_poster_content_type"
     t.integer "event_poster_file_size"
     t.datetime "event_poster_updated_at"
+    t.float "latitude"
+    t.float "longitude"
+  end
+
+  create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.boolean "ac"
+    t.boolean "pool"
+    t.boolean "projector"
+    t.boolean "sound_system"
+    t.boolean "genertor"
+    t.boolean "microphone"
+    t.boolean "drinks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "venue_id"
+    t.index ["venue_id"], name: "index_facilities_on_venue_id"
+  end
+
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "body"
+    t.integer "rating"
+    t.string "reviewable_type"
+    t.bigint "reviewable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -61,4 +104,51 @@ ActiveRecord::Schema.define(version: 2020_01_24_051838) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "venue_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "venue_id"
+    t.string "contact_number"
+    t.text "address"
+    t.string "country"
+    t.string "state"
+    t.string "pincode"
+    t.string "gst"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["venue_id"], name: "index_venue_addresses_on_venue_id"
+  end
+
+  create_table "venue_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "album_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "venue_profile_file_name"
+    t.string "venue_profile_content_type"
+    t.integer "venue_profile_file_size"
+    t.datetime "venue_profile_updated_at"
+    t.index ["album_id"], name: "index_venue_images_on_album_id"
+  end
+
+  create_table "venue_registrations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "venue_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_venue_registrations_on_user_id"
+    t.index ["venue_id"], name: "index_venue_registrations_on_venue_id"
+  end
+
+  create_table "venues", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_venues_on_user_id"
+  end
+
+  add_foreign_key "albums", "venues"
+  add_foreign_key "venue_addresses", "venues"
+  add_foreign_key "venue_images", "albums"
+  add_foreign_key "venue_registrations", "users"
+  add_foreign_key "venue_registrations", "venues"
 end

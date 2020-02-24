@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ac: false
+  pool: false
+  projector: false
+  sound_system: false
+  genertor: false
+  microphone: false
+  drinks: false
+
+two:
+  ac: false
+  pool: false
+  projector: false
+  sound_system: false
+  genertor: false
+  microphone: false
+  drinks: false

@@ -1,0 +1,84 @@
+<div class="container mt-2 mb-4">
+	<div class="row">
+		<div class="col-md-12 mb-2">
+			<h2><%= @venue.name %></h2>
+		</div>
+		<br><br>
+	</div>
+	<div class="row">
+		<div class="col-md-7">
+			<%= image_tag @venue.albums.last.venue_images.last.venue_profile.url, class: "img-rounded", width: "100%" %>
+		</div>
+		<div class="col-md-5">
+			<div class="row mb-3">
+				<ul class="list-group">
+				  <li class="list-group-item">600/- per plate - veg</li>
+				  <li class="list-group-item">800/- per plate - non veg</li>
+				</ul> 
+			</div>
+			<% if user_signed_in? & current_user %>
+				<div class="row mtb-3">
+					<%= link_to "Add more images to venue", new_venue_album_path(@venue.id), class: "btn btn-primary" %>
+				</div>
+			<% end %>
+			<div class="row">
+				<form accept="" method="post">
+					<div class="col-md-6 mp-0">
+						<div class="form-group">
+							<input type="text" name="name" class="form-control" placeholder="Name">
+						</div>
+					</div>
+					<div class="col-md-6 mp-0">
+						<div class="form-group">
+							<input type="text" name="phone_number" class="form-control" placeholder="Phone number">
+						</div>
+					</div>
+					<div class="col-md-6 mp-0">
+						<div class="form-group">
+							<input type="text" name="email" class="form-control" placeholder="Email address">
+						</div>
+					</div>
+					<div class="col-md-6 mp-0">
+						<div class="form-group">
+							<input type="date" name="event_date" class="form-control" placeholder="Select date">
+						</div>
+					</div>
+					<div>
+						<input type="button" name="submit" class="btn btn-primary" value="Check availability">
+					</div>
+				</form>
+			</div>
+		</div>
+  </div>
+  <div class="row">
+    <h3>Reviews</h3>
+    <hr>
+    <% if @venue_reviews.present? %>
+      <% @venue_reviews.each do |review| %>
+        <p>Rating <%= review.rating %></p>
+        <p><%= review.body %></p>
+        <br>
+      <% end %>
+    <% else %>
+      <p>Reviews not found for this venue</p>
+      <p></p>
+    <% end %>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-5">
+      <%= form_with url: reviews_path, method: :post do |f| %>
+        <div class="form-group">
+          <%= f.number_field :rating, class: "form-control" %>
+          <%= f.hidden_field :venue_id, value: @venue.id %>
+        </div>
+        <div class="form-group">
+          <%= f.text_area :body, class: "form-control" %>
+        </div>
+        <div>
+          <%= f.submit "Submit review", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row mtb-5">
+    <% @venues.each do |venue| %>
+      
+        <div class="card mb-4 box-shadow">
+        	<%= image_tag venue.albums.last.venue_images.last.venue_profile.url, class: "card-img-top", width: "225px", height: "100%" %>
+	        <div class="card-body">
+	          <p class="card-text"><%= link_to venue.name, venue_path(venue.id) %></p>
+	        </div>
+	      </div>
+      
+    <% end %>
+  </div>  
+</div>

@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   scope module: 'admins', as: 'admins', path: '/admins' do
 	 get 'dashboard', to: 'dashboard#index', as: 'root'
   end
+  resources :venues do
+    resources :albums
+  end
+
+  resources :reviews
 
   
 

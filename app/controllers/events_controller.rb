@@ -29,6 +29,8 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user_id = current_user.id
+    #@event.find_lat_lang_from_location(event_params['location'])
+    #nil.test!
 
     respond_to do |format|
       if @event.save

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  album: one
+  venue: one
+  images: MyString
+
+two:
+  album: two
+  venue: two
+  images: MyString

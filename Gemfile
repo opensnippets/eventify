@@ -67,3 +67,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'devise'
 gem "paperclip", "~> 6.0.0"
+gem 'geocoder', '~> 1.2', '>= 1.2.8'
+gem 'toastr-rails'
+
+gem "nested_form"

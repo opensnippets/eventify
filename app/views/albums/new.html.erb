@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="row text-center">
+		<h4>Create album</h4>
+	</div>
+	<hr>
+	<%= nested_form_for [@venue, @album], html: { multipart: true } do |album| %>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="form-group">
+						<label>Album name</label>
+						<%= album.text_field :album_name, class: "form-control", placeholder: "Album name" %>
+					</div>
+				</div>
+
+				<%= album.fields_for :venue_images do |img| %>
+					<div class="col-md-4 col-md-offset-4">
+						<div class="form-group">
+							<%= img.file_field :venue_profile, as: :file, class: "form-control", placeholder: "Upload venue images" %>
+							<%= img.link_to_remove "Remove image" %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<div class="col-md-12">
+				<p><%= album.link_to_add "Add a image", :venue_images, class: "btn btn-primary" %></p>
+			</div>
+
+			<div>
+				<%= album.submit  "Create", class: "btn btn-primary" %>
+			</div>
+		</div>
+		
+			
+	<% end %>
+</div>

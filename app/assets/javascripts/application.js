@@ -18,4 +18,23 @@
 //= require moment.js
 //= require datepicker/bootstrap-datetimepicker.js
 //= require validate/jquery.validate.min.js
+//= require toastr
+//= require jquery_nested_form
 //= require_tree .
+
+$(document).ready(function() {
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "positionClass": "toast-top-right",
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+});

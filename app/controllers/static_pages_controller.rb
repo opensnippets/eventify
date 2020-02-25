@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
 	layout 'application'
   def home
-  	 @events = Event.order('created_at DESC').limit(6)
+  	 @venues = Venue.order('created_at DESC')
   end
 
   def about

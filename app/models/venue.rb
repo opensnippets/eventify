@@ -11,4 +11,7 @@ class Venue < ApplicationRecord
   has_many :users, through: :venue_registrations
 
   has_many :reviews, as: :reviewable
+  
+  has_many :foods
+  accepts_nested_attributes_for :foods
 end

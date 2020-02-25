@@ -7,7 +7,7 @@
 
 <div class="row mtb-5">
 	<div class="col-md-6 col-md-offset-3">
-		<%= form_for @venue do |f| %>
+		<%= nested_form_for @venue do |f| %>
 			<div class="form-group">
 				<%= f.text_field :name, class: "form-control", placeholder: "Venue name" %>
 			</div>
@@ -95,7 +95,28 @@
 					</div>
 					
 				<% end %>
-			</div>
+      </div>
+      <br>
+      <div class="row">
+        <h3>Foods</h3>
+      </div>
+      <div class="row">
+        <%= f.fields_for :foods do |f| %>
+          <div class="form-group">
+            <%= f.select :food_type, Food.food_types.keys.map {|key| [key, key]}, {}, html: { class: "form-control"} %>
+            
+          </div>
+          <div class="form-group">
+            <%= f.number_field :price, class: "form-control" %> 
+          </div>
+          <div>
+            <%= f.link_to_remove "Remove food" %>
+          </div>
+        <% end %>
+          <div>
+            <%= f.link_to_add  "Add food", :foods, class: "btn btn-primary" %>
+          </div>
+      </div>
 			<br>
 			<div class="form-group text-center">
 				<%= f.submit "Create venue", class: "btn btn-primary" %>

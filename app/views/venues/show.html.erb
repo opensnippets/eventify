@@ -22,31 +22,27 @@
 				</div>
 			<% end %>
 			<div class="row">
-				<form accept="" method="post">
+        <%= form_with url: venue_bookings_path,method: :post do |f| %>
 					<div class="col-md-6 mp-0">
-						<div class="form-group">
-							<input type="text" name="name" class="form-control" placeholder="Name">
+            <div class="form-group">
+              <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+              <%= f.hidden_field :venue_id, value: @venue.id %>
 						</div>
 					</div>
 					<div class="col-md-6 mp-0">
-						<div class="form-group">
-							<input type="text" name="phone_number" class="form-control" placeholder="Phone number">
+            <div class="form-group">
+              <%= f.text_field :phone_number, class: "form-control",placeholder: "Phone number" %> 
 						</div>
 					</div>
 					<div class="col-md-6 mp-0">
-						<div class="form-group">
-							<input type="text" name="email" class="form-control" placeholder="Email address">
+            <div class="form-group">
+              <%= f.date_field :function_date, class: "form-control", placeholder: "Select date" %>
 						</div>
 					</div>
-					<div class="col-md-6 mp-0">
-						<div class="form-group">
-							<input type="date" name="event_date" class="form-control" placeholder="Select date">
-						</div>
+          <div>
+            <%= f.submit "Check availability", class: "btn btn-primary" %>
 					</div>
-					<div>
-						<input type="button" name="submit" class="btn btn-primary" value="Check availability">
-					</div>
-				</form>
+        <% end %>
 			</div>
 		</div>
   </div>

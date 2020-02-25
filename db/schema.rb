@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_24_181603) do
+ActiveRecord::Schema.define(version: 2020_02_25_170124) do
 
   create_table "albums", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "venue_id"
@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(version: 2020_02_24_181603) do
     t.index ["venue_id"], name: "index_facilities_on_venue_id"
   end
 
+  create_table "foods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "venue_id"
+    t.integer "food_type", default: 0
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["venue_id"], name: "index_foods_on_venue_id"
+  end
+
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "body"
     t.integer "rating"
@@ -131,6 +140,9 @@ ActiveRecord::Schema.define(version: 2020_02_24_181603) do
   create_table "venue_registrations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "venue_id"
+    t.string "phone_number"
+    t.string "name"
+    t.date "function_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_venue_registrations_on_user_id"
@@ -147,6 +159,7 @@ ActiveRecord::Schema.define(version: 2020_02_24_181603) do
   end
 
   add_foreign_key "albums", "venues"
+  add_foreign_key "foods", "venues"
   add_foreign_key "venue_addresses", "venues"
   add_foreign_key "venue_images", "albums"
   add_foreign_key "venue_registrations", "users"

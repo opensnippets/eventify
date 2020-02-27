@@ -1,8 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
-  venue: one
+  user_id: 1
+  venuei_id: 1
+  phone_number: "909909009"
+  function_date: "2020-12-11"
+  name: "ganesh"
+  
 
 two:
   user: two
